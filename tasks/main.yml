@@ -1,2 +1,9 @@
 ---
-# tasks file for ansible-vagrant
+- apt:
+    name: vagrant
+  become: true
+  when: ansible_system == 'Linux'
+
+- homebrew_cask:
+    name: vagrant
+  when: ansible_system == 'Darwin'
