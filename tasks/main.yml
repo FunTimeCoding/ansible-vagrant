@@ -1,6 +1,24 @@
 ---
+# https://github.com/hashicorp/vagrant
+
+# Vagrant in Stretch is not compatible with VirtualBox 5.2.
+#- apt:
+#    name: vagrant
+#  become: true
+#  when: ansible_system == 'Linux'
+
+- file:
+    path: '{{ ansible_user_dir }}/tmp'
+    state: directory
+  when: ansible_system == 'Linux'
+
+- get_url:
+    url: https://releases.hashicorp.com/vagrant/2.0.1/vagrant_2.0.1_x86_64.deb
+    dest: '{{ ansible_user_dir }}/tmp/vagrant_2.0.1.deb'
+  when: ansible_system == 'Linux'
+
 - apt:
-    name: vagrant
+    deb: '{{ ansible_user_dir }}/tmp/vagrant_2.0.1.deb'
   become: true
   when: ansible_system == 'Linux'
 
