@@ -10,17 +10,17 @@
 - file:
     path: '{{ ansible_user_dir }}/tmp'
     state: directory
-  when: ansible_system == 'Linux'
+  when: ansible_os_family == 'Debian'
 
 - get_url:
     url: https://releases.hashicorp.com/vagrant/2.0.1/vagrant_2.0.1_x86_64.deb
     dest: '{{ ansible_user_dir }}/tmp/vagrant_2.0.1.deb'
-  when: ansible_system == 'Linux'
+  when: ansible_os_family == 'Debian'
 
 - apt:
     deb: '{{ ansible_user_dir }}/tmp/vagrant_2.0.1.deb'
   become: true
-  when: ansible_system == 'Linux'
+  when: ansible_os_family == 'Debian'
 
 - homebrew_cask:
     name: vagrant
