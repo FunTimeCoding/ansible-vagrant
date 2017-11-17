@@ -5,7 +5,7 @@
 #- apt:
 #    name: vagrant
 #  become: true
-#  when: ansible_system == 'Linux'
+#  when: ansible_os_family == 'Debian'
 
 - file:
     path: '{{ ansible_user_dir }}/tmp'
