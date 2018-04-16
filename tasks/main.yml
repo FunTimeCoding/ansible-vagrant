@@ -13,12 +13,12 @@
   when: ansible_os_family == 'Debian'
 
 - get_url:
-    url: 'https://releases.hashicorp.com/vagrant/{{ composer_version }}/vagrant_{{ composer_version }}_x86_64.deb'
-    dest: '{{ ansible_user_dir }}/tmp/vagrant_{{ composer_version }}.deb'
+    url: 'https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/vagrant_{{ vagrant_version }}_x86_64.deb'
+    dest: '{{ ansible_user_dir }}/tmp/vagrant_{{ vagrant_version }}.deb'
   when: ansible_os_family == 'Debian'
 
 - apt:
-    deb: '{{ ansible_user_dir }}/tmp/vagrant_{{ composer_version }}.deb'
+    deb: '{{ ansible_user_dir }}/tmp/vagrant_{{ vagrant_version }}.deb'
   become: true
   when: ansible_os_family == 'Debian'
 
