@@ -1,2 +1,4 @@
 ---
-# handlers file for ansible-vagrant
+- name: reinstall vagrant plugins
+  # Force disables the confirmation prompt.
+  command: vagrant plugin expunge --reinstall --force

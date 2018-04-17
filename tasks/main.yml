@@ -20,6 +20,8 @@
 - apt:
     deb: '{{ ansible_user_dir }}/tmp/vagrant_{{ vagrant_version }}.deb'
   become: true
+  notify:
+  - reinstall vagrant plugins
   when: ansible_os_family == 'Debian'
 
 - homebrew_cask:
