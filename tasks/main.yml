@@ -8,13 +8,13 @@
 #  when: ansible_os_family == 'Debian'
 
 - get_url:
-    url: 'https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/vagrant_{{ vagrant_version }}_x86_64.deb'
-    dest: '/var/tmp/vagrant_{{ vagrant_version }}.deb'
+    url: 'https://releases.hashicorp.com/vagrant/{{ vagrant.version }}/vagrant_{{ vagrant.version }}_x86_64.deb'
+    dest: '/var/tmp/vagrant_{{ vagrant.version }}.deb'
   remote_user: root
   when: ansible_os_family == 'Debian'
 
 - apt:
-    deb: '/var/tmp/vagrant_{{ vagrant_version }}.deb'
+    deb: '/var/tmp/vagrant_{{ vagrant.version }}.deb'
   notify:
   - reinstall vagrant plugins
   remote_user: root
