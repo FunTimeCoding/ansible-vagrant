@@ -1,2 +1,3 @@
+---
 dependencies:
 - { role: virtual-box, when: ansible_virtualization_role == '' or ansible_virtualization_role == 'host' }
