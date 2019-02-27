@@ -1,7 +1,7 @@
 ---
 # github.com/hashicorp/vagrant
 
-# TODO: Vagrant in Stretch is not compatible with VirtualBox 5.2. Wait for newer Vagrant version.
+# TODO: Vagrant in Stretch is not compatible with VirtualBox 6. Wait for newer Vagrant version.
 #- apt:
 #    name: vagrant
 #  remote_user: root
@@ -22,4 +22,11 @@
 
 - homebrew_cask:
     name: vagrant
+  when: ansible_system == 'Darwin'
+
+- template:
+    src: sudo.txt
+    dest: /etc/sudoers.d/vagrant
+    mode: 0440
+  remote_user: root
   when: ansible_system == 'Darwin'
