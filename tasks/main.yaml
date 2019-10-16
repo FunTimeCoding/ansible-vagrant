@@ -1,24 +1,24 @@
 ---
 # github.com/hashicorp/vagrant
 
-# TODO: Vagrant in Stretch is not compatible with VirtualBox 6. Wait for newer Vagrant version.
-#- apt:
-#    name: vagrant
-#  remote_user: root
-#  when: ansible_os_family == 'Debian'
+- apt:
+    name: vagrant
+  remote_user: root
+  when: ansible_os_family == 'Debian' and ansible_distribution_release == 'buster'
 
+# Vagrant in Stretch is not compatible with VirtualBox 6.
 - get_url:
     url: 'https://releases.hashicorp.com/vagrant/{{ vagrant.version }}/vagrant_{{ vagrant.version }}_x86_64.deb'
     dest: '/var/tmp/vagrant_{{ vagrant.version }}.deb'
   remote_user: root
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == 'Debian' and ansible_distribution_release == 'stretch'
 
 - apt:
     deb: '/var/tmp/vagrant_{{ vagrant.version }}.deb'
   notify:
   - reinstall vagrant plugins
   remote_user: root
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == 'Debian' and ansible_distribution_release == 'stretch'
 
 - homebrew_cask:
     name: vagrant
