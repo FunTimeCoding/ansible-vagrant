@@ -29,3 +29,8 @@
     mode: 0440
   remote_user: root
   when: ansible_system == 'Darwin'
+
+- git:
+    repo: git@github.com:hashicorp/vagrant.git
+    dest: '{{ ansible_user_dir }}/src/vagrant'
+  when: vagrant.clone
