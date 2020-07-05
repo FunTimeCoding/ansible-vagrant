@@ -1,6 +1,6 @@
 ---
 vagrant:
   source: debian
-  # TODO: Update this using ~/src/vagrant-tools/bin/show-latest-release-version.sh
+  # TODO: Update this using ~/src/virtualization-tools/bin/vagrant/show-latest-release-version.sh
   version: 2.2.9
   clone: False
