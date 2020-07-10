@@ -34,3 +34,13 @@
     repo: git@github.com:hashicorp/vagrant.git
     dest: '{{ ansible_user_dir }}/src/vagrant'
   when: vagrant.clone
+
+# bundle accidentally ran in ~/src/vagrant on w1, before GEM_HOME was defined, which installed gems globally.
+# These were the clean up steps:
+#sudo find /usr/local/bin -mindepth 1 -mtime -1 -delete
+#sudo find /var/lib/gems/2.5.0 -mindepth 2 -mtime -1 -delete
+- bundler:
+    state: present
+    chdir: '{{ ansible_user_dir }}/src/veewee'
+  environment:
+    GEM_HOME: '{{ ansible_user_dir }}/.gem'
