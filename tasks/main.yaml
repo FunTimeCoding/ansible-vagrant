@@ -33,7 +33,8 @@
 - git:
     repo: git@github.com:hashicorp/vagrant.git
     dest: '{{ ansible_user_dir }}/src/vagrant'
-  when: vagrant.clone
+    version: 'v{{ vagrant.version }}'
+  when: vagrant.source == 'github'
 
 # bundle accidentally ran in ~/src/vagrant on w1, before GEM_HOME was defined, which installed gems globally.
 # These were the clean up steps:
@@ -44,3 +45,4 @@
     chdir: '{{ ansible_user_dir }}/src/vagrant'
   environment:
     GEM_HOME: '{{ ansible_user_dir }}/.gem'
+  when: vagrant.source == 'github'
