@@ -46,3 +46,18 @@
   environment:
     GEM_HOME: '{{ ansible_user_dir }}/.gem'
   when: vagrant.source == 'github'
+
+- command: bundle --binstubs exec
+  args:
+    chdir: '{{ ansible_user_dir }}/src/vagrant'
+    creates: '{{ ansible_user_dir }}/src/vagrant/exec/vagrant'
+  environment:
+    GEM_HOME: '{{ ansible_user_dir }}/.gem'
+  when: vagrant.source == 'github'
+
+- file:
+    dest: /usr/local/bin/vagrant
+    src: '{{ ansible_user_dir }}/src/vagrant/exec/vagrant'
+    state: link
+  remote_user: root
+  when: vagrant.source == 'github'
