@@ -41,6 +41,6 @@
 #sudo find /var/lib/gems/2.5.0 -mindepth 2 -mtime -1 -delete
 - bundler:
     state: present
-    chdir: '{{ ansible_user_dir }}/src/veewee'
+    chdir: '{{ ansible_user_dir }}/src/vagrant'
   environment:
     GEM_HOME: '{{ ansible_user_dir }}/.gem'
